@@ -1,6 +1,6 @@
 # Http2radius
 
-Radius client that takes http(s)/json as input and produces radius requests, and back
+Tool that receives http(s)/json requests and produces radius requests to the specified remote server, and back
 
 # Request format
 
