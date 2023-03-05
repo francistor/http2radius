@@ -99,13 +99,19 @@ something like
 
 ## Configuration
 
-### Basic: Listening ports
+### Basic
+
+#### Listening ports
 
 Use the following environment variables
 * `IGOR_HTTP_PORT` The default is 8080
 * `IGOR_METRICS_PORT` The default is 9090
 * `IGOR_AUTH_PORT` the default is 1812
 * `IGOR_ACCT_PORT` the default is 1813
+
+#### Use https
+By default, http is used. To use http, set the environment variable IGOR_USE_PLAINHTTP=false, or change the `httpRouter.json` configuration
+file accordingly
 
 ### Advanced
 

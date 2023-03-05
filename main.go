@@ -36,6 +36,9 @@ func main() {
 	if os.Getenv("IGOR_ACCT_PORT") == "" {
 		os.Setenv("IGOR_ACCT_PORT", "1813")
 	}
+	if os.Getenv("IGOR_USE_PLAINHTTP") == "" {
+		os.Setenv("IGOR_USE_PLAINHTTP", "true")
+	}
 
 	// Get the command line arguments
 	bootPtr := flag.String("boot", "resources/searchRules.json", "File or http URL with Configuration Search Rules")
