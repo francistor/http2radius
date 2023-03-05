@@ -128,13 +128,19 @@ The image is published as `francistor/http2radius:<tag>`
 Launch attached with to the terminal, with removal on exit, with
 
 ```bash
-docker run --rm -it -p 1812:1812 -p 1813:1813 -p 8080:8080 --name http2radius francistor/http2radius:0.2
+docker run --name http2radius --rm -it -p 1812:1812 -p 1813:1813 -p 8080:8080 francistor/http2radius:0.2
 ``` 
 
 Or detached
 
 ```
 docker run --name http2radius -p 1812:1812 -p 1813:1813 -p 8080:8080 -d francistor/http2radius:0.2
+```
+
+Change the listening port for http
+
+```
+docker run --rm -it --name http2radius -p 1812:1812 -p 1813:1813 -p 8081:8081 -e IGOR_HTTP_PORT=8081 francistor/http2radius:0.2
 ```
 
 For customization of the configuration, you may mount a volume with the configuration files (that includes the dictionaries)
