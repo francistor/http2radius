@@ -2,7 +2,7 @@ module github.com/francistor/http2radius
 
 go 1.19
 
-require github.com/francistor/igor v0.0.0-20230204205055-2fac73204a85
+require github.com/francistor/igor v0.0.0-20230305131549-b2bd4880cec8
 
 require (
 	github.com/Microsoft/hcsshim v0.9.7 // indirect

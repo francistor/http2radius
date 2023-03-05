@@ -1,6 +1,8 @@
 package main
 
-import "github.com/francistor/igor/core"
+import (
+	"github.com/francistor/igor/core"
+)
 
 // Sends back the same attributes received in the request
 // Prints the received packet
@@ -19,9 +21,14 @@ func echoRequestHandler(request *core.RadiusPacket) (*core.RadiusPacket, error) 
 
 	// Compose reply packet
 	response := core.NewRadiusResponse(request, true)
+
 	for i := range request.AVPs {
-		response.AddAVP(&request.AVPs[i])
+		attrName := request.AVPs[i].Name
+		attrStringValue := request.AVPs[i].GetTaggedString()
+		response.Add(attrName, attrStringValue)
 	}
+
+	l.Infof("replied packet %s", response)
 
 	return response, nil
 }

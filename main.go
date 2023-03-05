@@ -24,6 +24,19 @@ func main() {
 	}()
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
 
+	if os.Getenv("IGOR_HTTP_PORT") == "" {
+		os.Setenv("IGOR_HTTP_PORT", "8080")
+	}
+	if os.Getenv("IGOR_METRICS_PORT") == "" {
+		os.Setenv("IGOR_METRICS_PORT", "9090")
+	}
+	if os.Getenv("IGOR_AUTH_PORT") == "" {
+		os.Setenv("IGOR_AUTH_PORT", "1812")
+	}
+	if os.Getenv("IGOR_ACCT_PORT") == "" {
+		os.Setenv("IGOR_ACCT_PORT", "1813")
+	}
+
 	// Get the command line arguments
 	bootPtr := flag.String("boot", "resources/searchRules.json", "File or http URL with Configuration Search Rules")
 	instancePtr := flag.String("instance", "", "Name of instance")
