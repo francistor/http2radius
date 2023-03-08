@@ -46,6 +46,10 @@ go build
 http2radius/http2radius &
 
 # Test by sending a http request that will be sent to http2radius acting as an "echo" server
+# perRequestTimeoutSpec is a number followed by "s" or "ms" (seconds or milliseconds)
+# serverTries is the number of tries to the specified server, keeping the request id
+# tries is the number of tries, where the request id will change. The full number of
+# tries will be tries*serverTries.
 curl -s http://localhost:8080/routeRadiusRequest -X POST -d '
 {
 "destination": "127.0.0.1:1812",
@@ -76,9 +80,10 @@ You an also use
 
 ### What is happening in test mode
 
-We are sending a http request to `http2radius`, that is instructing to send a radius packet to `127.0.0.1`, where there also our radius
-server listening, with a policy that simply echoes back all packets received. Responses are sent back to the http client, which will receive
-something like 
+We are sending a http POST request to `http2radius`, that will generate a radius packet to `127.0.0.1`. There, a simple radius server
+is listening, with a policy that echoes back all packets received. The radius response is mapped again to a JSON object,
+that will be received by the http client (e.g. Postman). The Code 2 below is an Access-Accept. The authenticator has been trimmed
+for readability, and in reality it is 16 bytes.
 
 ```json
 {
